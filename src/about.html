@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About This Project</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+
+    <div class="container">
+        <main class="page-content">
+            <h1>About This Project</h1>
+            <p>This project is a demonstration of a modern web application built with a containerized infrastructure and deployed via a CI/CD pipeline.</p>
+            
+            <h2>Core Technologies</h2>
+            <ul>
+                <li><strong>Backend:</strong> PHP 7.4 running on an Apache server.</li>
+                <li><strong>Database:</strong> MySQL, providing persistent data storage for the guestbook.</li>
+                <li><strong>Frontend:</strong> Vanilla JavaScript (ES6+), HTML5, and CSS3 for an interactive user experience without frontend frameworks.</li>
+                <li><strong>Containerization:</strong> Docker and Docker Compose, allowing the entire application and its services to run in isolated, reproducible environments.</li>
+            </ul>
+
+            <h2>DevOps & Monitoring</h2>
+            <ul>
+                <li><strong>CI/CD Pipeline:</strong> Jenkins, which automates the build and deployment process directly from the GitHub repository.</li>
+                <li><strong>Monitoring Stack:</strong>
+                    <ul>
+                        <li><strong>Prometheus:</strong> Scrapes and stores time-series metrics from application services.</li>
+                        <li><strong>Grafana:</strong> Provides rich, interactive dashboards for visualizing the metrics collected by Prometheus.</li>
+                        <li><strong>cAdvisor:</strong> An agent that exposes detailed container metrics (CPU, Memory, Network) to Prometheus.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h2>Features</h2>
+            <ul>
+                <li><strong>Interactive Guestbook:</strong> A real-time, single-page-feel guestbook that allows users to post and view messages without page reloads, using JavaScript's Fetch API to communicate with the PHP backend.</li>
+                <li><strong>Live System Stats:</strong> A dashboard that displays live metrics from the server, gathered by a custom PHP API endpoint.</li>
+            </ul>
+        </main>
+    </div>
+
+    <script src="nav.js"></script>
+</body>
+</html>

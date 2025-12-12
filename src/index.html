@@ -3,47 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Guestbook</title>
+    <title>Project Homepage</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div id="nav-placeholder"></div>
+
     <div class="container">
-        <header>
-            <h1>Interactive Guestbook</h1>
-        </header>
+        <main class="homepage">
+            <header>
+                <h1>Welcome to the Project Hub</h1>
+                <p>An interactive web application built with PHP, MySQL, and Docker, deployed via Jenkins.</p>
+            </header>
 
-        <main>
-            <div class="form-container">
-                <h2>Leave a Message</h2>
-                <form id="comment-form">
-                    <div class="form-group">
-                        <label for="username">Name</label>
-                        <input type="text" id="username" name="username" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="4" required></textarea>
-                    </div>
-                    <button type="submit" id="submit-btn">
-                        <span class="btn-text">Post Message</span>
-                        <span class="spinner" style="display: none;"></span>
-                    </button>
-                </form>
-                 <p id="error-message" class="error"></p>
-            </div>
-
-            <div class="comments-container">
-                <h2>Comments</h2>
-                <div id="comments-list">
-                    <!-- Comments will be dynamically inserted here -->
-                </div>
+            <div class="card-grid">
+                <a href="guestbook.html" class="feature-card">
+                    <h3>Interactive Guestbook</h3>
+                    <p>Leave a message and see real-time updates from other users without page reloads.</p>
+                </a>
+                <a href="stats.html" class="feature-card">
+                    <h3>Live System Stats</h3>
+                    <p>View live metrics from the server environment, including uptime, memory, and disk usage.</p>
+                </a>
+                <a href="about.html" class="feature-card">
+                    <h3>About This Project</h3>
+                    <p>Learn more about the architecture, tools, and features of this project.</p>
+                </a>
             </div>
         </main>
     </div>
 
-    <script src="app.js"></script>
+    <script src="nav.js"></script>
 </body>
 </html>
