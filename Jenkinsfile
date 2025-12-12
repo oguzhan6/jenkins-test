@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script {
                     dir('jenkins') {
-                        sh 'docker-compose build'
+                        sh 'docker compose build'
                     }
                 }
             }
@@ -15,7 +15,7 @@ pipeline {
             steps {
                 script {
                     dir('jenkins') {
-                        sh 'docker-compose up -d'
+                        sh 'docker compose up -d'
                     }
                 }
             }
@@ -30,7 +30,7 @@ pipeline {
         always {
             script {
                 dir('jenkins') {
-                    sh 'docker-compose down'
+                    sh 'docker compose down'
                 }
             }
         }
