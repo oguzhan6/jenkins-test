@@ -15,7 +15,8 @@ if ($method === 'GET') {
         echo json_encode($comments);
     } catch (PDOException $e) {
         http_response_code(500);
-        echo json_encode(['status' => 'error', 'message' => 'Failed to retrieve comments.']);
+        // For debugging, send the actual error message back.
+        echo json_encode(['status' => 'error', 'message' => 'Database query failed: ' . $e->getMessage()]);
     }
     exit;
 }
