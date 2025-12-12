@@ -3,8 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const uptimeEl = document.querySelector('#uptime p');
     const memoryTextEl = document.querySelector('#memory p');
     const memoryBarEl = document.querySelector('#memory .progress-bar');
-    const diskTextEl = document.querySelector('#disk p');
-    const diskBarEl = document.querySelector('#disk .progress-bar');
+    const cpuTextEl = document.querySelector('#cpu p');
+    const cpuBarEl = document.querySelector('#cpu .progress-bar');
     const errorEl = document.getElementById('error-message');
 
     const fetchAndRenderStats = async () => {
@@ -25,10 +25,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 memoryTextEl.textContent = `${stats.memory.used}MB / ${stats.memory.total}MB`;
             }
 
-            // Disk
-            if (stats.disk) {
-                diskBarEl.style.width = `${stats.disk.percent}%`;
-                diskTextEl.textContent = `${stats.disk.used} / ${stats.disk.total}`;
+            // CPU
+            if (stats.cpu) {
+                cpuBarEl.style.width = `${stats.cpu.percent}%`;
+                cpuTextEl.textContent = `${stats.cpu.percent}%`;
             }
 
         } catch (error) {

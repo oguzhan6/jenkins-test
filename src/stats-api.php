@@ -21,35 +21,29 @@ function parseMemory($free_str) {
     ];
 }
 
-function parseDisk($df_str) {
-    preg_match('/(\d+)[MGTPE]?\s+(\d+)[MGTPE]?\s+(\d+)[MGTPE]?\s+(\d+)%\s+\/var\/www\/html/', $df_str, $matches);
-    if (count($matches) < 5) return ['total' => 'N/A', 'used' => 'N/A', 'percent' => 0];
-    
-    // Note: This is a simplified parser. It assumes units are the same.
-    $total = $matches[1];
-    $used = $matches[2];
-    $percent = (int)$matches[4];
+function parseCpu($top_str) {
+    // Looks for a line like: %Cpu(s):  0.3 us,  0.2 sy,  0.0 ni, 99.5 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+    preg_match('/%Cpu\(s\):.*,\s*([0-9.]+)\s*id/', $top_str, $matches);
+    if (count($matches) < 2) return ['percent' => 0];
 
-    return [
-        'total' => $total,
-        'used' => $used,
-        'percent' => $percent
-    ];
+    $idle = (float)$matches[1];
+    $percent = round(100 - $idle, 1);
+    return ['percent' => $percent];
 }
 
 try {
     $uptime = shell_exec('uptime');
     $memory = shell_exec('free -m');
-    $disk = shell_exec('df -h /var/www/html');
+    $cpu_info = shell_exec('top -bn1');
 
-    if ($uptime === null || $memory === null || $disk === null) {
+    if ($uptime === null || $memory === null || $cpu_info === null) {
         throw new Exception("One or more shell commands failed to execute.");
     }
 
     $stats = [
         'uptime' => parseUptime($uptime),
         'memory' => parseMemory($memory),
-        'disk' => parseDisk($disk)
+        'cpu' => parseCpu($cpu_info)
     ];
 
     echo json_encode($stats);
@@ -62,4 +56,3 @@ try {
         'detail' => $e->getMessage()
     ]);
 }
-
