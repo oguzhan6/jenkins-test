@@ -1,13 +1,17 @@
--- Create a database if it doesn't exist
-drop DATABASE mydatabase;
 CREATE DATABASE IF NOT EXISTS mydatabase;
 USE mydatabase;
 
--- Create a table named oguzhan_fidanci
-CREATE TABLE fullname (
+-- Drop the old table if it exists
+DROP TABLE IF EXISTS fullname;
+
+-- Create a table for the guestbook comments
+CREATE TABLE comments (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255)
+    username VARCHAR(50) NOT NULL,
+    message TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Insert some sample data
-INSERT INTO fullname (name) VALUES ('anja fidanci');
+-- Insert some sample data to start
+INSERT INTO comments (username, message) VALUES ('Admin', 'Welcome to the new interactive guestbook!');
+INSERT INTO comments (username, message) VALUES ('user', 'This looks like a great start!');
