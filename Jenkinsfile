@@ -20,7 +20,7 @@ pipeline {
     }
     post {
         always {
-            // docker compose down removed to keep services running
+            echo 'Pipeline finished. Services are left running intentionally.'
         }
     }
 }
