@@ -4,20 +4,12 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                script {
-                    dir('jenkins') {
-                        sh 'docker compose build'
-                    }
-                }
+                sh 'docker compose build'
             }
         }
         stage('Start Services') {
             steps {
-                script {
-                    dir('jenkins') {
-                        sh 'docker compose up -d'
-                    }
-                }
+                sh 'docker compose up -d'
             }
         }
         stage('Show running containers') {
@@ -28,11 +20,7 @@ pipeline {
     }
     post {
         always {
-            script {
-                dir('jenkins') {
-                    sh 'docker compose down'
-                }
-            }
+            // docker compose down removed to keep services running
         }
     }
 }
