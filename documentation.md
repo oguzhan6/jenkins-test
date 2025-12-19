@@ -31,7 +31,7 @@ graph TD
 
     %% Data Flows - Applicatie
     User -- "1. HTTP Request (Website)" --> PHP
-    PHP -- "api die connectie maakt met database" --> API
+    PHP -- "API die connectie maakt met database en de gegevens beschikbaar stelt" --> API
     API -- "2. SQL Queries (PDO)" --> MySQL
 
     %% Data Flows - Monitoring Verzameling
@@ -162,6 +162,7 @@ De **Dockerfile** definieert de custom image voor de **php** service:
 
 
 - De tekstuele output van deze commando's wordt vervolgens door PHP-functies geparsed en omgezet in een gestructureerd JSON-antwoord.
+
 
 
 
