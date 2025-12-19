@@ -30,9 +30,9 @@ graph TD
     end
 
     %% Data Flows - Applicatie
-    User -- "1. HTTP Request (Website)" --> API
-    API -- "api die connectie maakt met database" --> PHP
-    PHP -- "2. SQL Queries (PDO)" --> MySQL
+    User -- "1. HTTP Request (Website)" --> PHP
+    API -- "api die connectie maakt met database" --> API
+    API -- "2. SQL Queries (PDO)" --> MySQL
 
     %% Data Flows - Monitoring Verzameling
     cAdvisor -. "Leest Metrics" .-> Host
@@ -162,6 +162,7 @@ De **Dockerfile** definieert de custom image voor de **php** service:
 
 
 - De tekstuele output van deze commando's wordt vervolgens door PHP-functies geparsed en omgezet in een gestructureerd JSON-antwoord.
+
 
 
 
