@@ -43,10 +43,10 @@ graph TD
 
     %% Styling voor duidelijkheid
     style A fill:#000,stroke:#fff
-    style PHP fill:#e1f5fe,stroke:#fff
-    style MySQL fill:#e1f5fe,stroke:#01579b
-    style cAdvisor fill:#fff3e0,stroke:#e65100
-    style Prometheus fill:#fff3e0,stroke:#e65100
+    style PHP fill:#000,stroke:#fff
+    style MySQL fill:#000,stroke:#fff
+    style cAdvisor fill:#000,stroke:#e65100
+    style Prometheus fill:#fff3e0,stroke:#000
     style Grafana fill:#fff3e0,stroke:#e65100
 ```
 
@@ -161,3 +161,4 @@ De **Dockerfile** definieert de custom image voor de **php** service:
 
 
 - De tekstuele output van deze commando's wordt vervolgens door PHP-functies geparsed en omgezet in een gestructureerd JSON-antwoord.
+
