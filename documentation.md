@@ -30,6 +30,7 @@ graph TD
 
     %% Data Flows - Applicatie
     User -- "1. HTTP Request (Website)" --> PHP
+    PHP -- "api die connectie maakt met database" --
     PHP -- "2. SQL Queries (PDO)" --> MySQL
 
     %% Data Flows - Monitoring Verzameling
@@ -37,11 +38,11 @@ graph TD
     Prometheus -- "3. Scrapes /metrics" --> cAdvisor
 
     %% Data Flows - Visualisatie
-    User -- "4. View Dashboard" --> Grafana
-    Grafana -- "5. PromQL Query" --> Prometheus
+    User -- "5. View Dashboard" --> Grafana
+    Grafana -- "4. PromQL Query" --> Prometheus
 
     %% Styling voor duidelijkheid
-    style PHP fill:#e1f5fe,stroke:#01579b
+    style PHP fill:#e1f5fe,stroke:#fff
     style MySQL fill:#e1f5fe,stroke:#01579b
     style cAdvisor fill:#fff3e0,stroke:#e65100
     style Prometheus fill:#fff3e0,stroke:#e65100
