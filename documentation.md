@@ -17,6 +17,7 @@ graph TD
     subgraph AppStack [Applicatie Stack]
         direction TB
         PHP[PHP/Apache Container<br/>Port: 8085]
+        API[API]
         MySQL[(MySQL Container<br/>Port: 3306)]
     end
 
@@ -29,8 +30,8 @@ graph TD
     end
 
     %% Data Flows - Applicatie
-    User -- "1. HTTP Request (Website)" --> A
-    A -- "api die connectie maakt met database" --> PHP
+    User -- "1. HTTP Request (Website)" --> API
+    API -- "api die connectie maakt met database" --> PHP
     PHP -- "2. SQL Queries (PDO)" --> MySQL
 
     %% Data Flows - Monitoring Verzameling
@@ -42,6 +43,7 @@ graph TD
     Grafana -- "4. PromQL Query" --> Prometheus
 
     %% Styling voor duidelijkheid
+    style API fill:#000,stroke:#fff
     style PHP fill:#000,stroke:#fff
     style MySQL fill:#000,stroke:#fff
     style cAdvisor fill:#3b0245,stroke:#e65100
@@ -160,6 +162,7 @@ De **Dockerfile** definieert de custom image voor de **php** service:
 
 
 - De tekstuele output van deze commando's wordt vervolgens door PHP-functies geparsed en omgezet in een gestructureerd JSON-antwoord.
+
 
 
 
