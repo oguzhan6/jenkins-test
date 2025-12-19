@@ -84,14 +84,14 @@ Het Jenkinsfile definieert de **CI/CD-pipeline** via *Pipeline-as-Code*.
 #### Stages
 - **Build**  
   Bouwt de custom Docker-image voor de PHP-applicatie met:
-  ```bash docker compose build```
+  ```docker compose build```
 
 - **Start Services**  
   Start alle applicatie- en monitoringservices in detached modus met:
-  ```bash docker compose up -d```
+  ```docker compose up -d```
 
 - **Show running containers**  
-  Voert ```bash docker ps ```uit als snelle verificatie in de Jenkins-log.
+  Voert ```docker ps``` uit als snelle verificatie in de Jenkins-log.
   
 
 #### Post-sectie
@@ -124,37 +124,37 @@ De **Dockerfile** definieert de custom image voor de **php** service:
 
 - **Belangrijkste Metrics**:
 
-- - **CPU-gebruik**: Het percentage CPU dat door elke container wordt verbruikt.
+  - **CPU-gebruik**: Het percentage CPU dat door elke container wordt verbruikt.
 
-- - **Geheugengebruik**: De hoeveelheid RAM die elke container in beslag neemt.
+  - **Geheugengebruik**: De hoeveelheid RAM die elke container in beslag neemt.
 
-- - **Netwerk I/O**: De hoeveelheid data die door elke container wordt verzonden en ontvangen.
+  - **Netwerk I/O**: De hoeveelheid data die door elke container wordt verzonden en ontvangen.
 
-- - **Container Status**: De gezondheid en status van de containers (actief, gestopt, herstartend).
+  - **Container Status**: De gezondheid en status van de containers (actief, gestopt, herstartend).
 
 - **Hoe het werkt**:
 
-- - **cAdvisor** verzamelt de data.
+  - **cAdvisor** verzamelt de data.
 
-- - **Prometheus** slaat de data op.
+  - **Prometheus** slaat de data op.
 
-- - **Grafana** visualiseert de data op een dashboard (geïmporteerd via ID **193**), specifiek ontworpen voor Docker-containermonitoring.
+  - **Grafana** visualiseert de data op een dashboard (geïmporteerd via ID **193**), specifiek ontworpen voor Docker-containermonitoring.
 
 ## 4. API Queries
 ### 4.1 Guestbook API (api.php)
 - **GET /api.php**: Voert de volgende SQL-query uit om alle commentaren op te halen, gesorteerd op datum:
-```SQL SELECT id, username, message, created_at FROM comments ORDER BY created_at DESC;```
+```SELECT id, username, message, created_at FROM comments ORDER BY created_at DESC;```
 
 - **POST /api.php**: Voert een "prepared SQL statement" uit om veilig een nieuw commentaar toe te voegen en SQL-injectie te voorkomen:
-```SQL INSERT INTO comments (username, message) VALUES (:username, :message);```
+```INSERT INTO comments (username, message) VALUES (:username, :message);```
 
 ### 4.2 System Stats API (stats-api.php)
 - **GET /stats-api.php**: Deze API bevraagt niet de database, maar voert shell-commando's uit op het besturingssysteem van de container:
 
-    1. **uptime**: Om de uptime van de server te verkrijgen.
+    - **uptime**: Om de uptime van de server te verkrijgen.
 
-    2. **free -m**: Om het geheugengebruik op te vragen.
+    - **free -m**: Om het geheugengebruik op te vragen.
 
-    3. **top -bn1**: Om een snapshot van actieve processen te krijgen, waaruit CPU-gebruik wordt afgeleid.
+    - **top -bn1**: Om een snapshot van actieve processen te krijgen, waaruit CPU-gebruik wordt afgeleid.
 
 - De tekstuele output van deze commando's wordt vervolgens door PHP-functies geparsed en omgezet in een gestructureerd JSON-antwoord.
