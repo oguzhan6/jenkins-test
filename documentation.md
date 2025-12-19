@@ -30,7 +30,7 @@ graph TD
 
     %% Data Flows - Applicatie
     User -- "1. HTTP Request (Website)" --> PHP
-    PHP -- "api die connectie maakt met database" --
+    A -- "api die connectie maakt met database" --> PHP
     PHP -- "2. SQL Queries (PDO)" --> MySQL
 
     %% Data Flows - Monitoring Verzameling
@@ -42,6 +42,7 @@ graph TD
     Grafana -- "4. PromQL Query" --> Prometheus
 
     %% Styling voor duidelijkheid
+    style A fill:#000,stroke:#fff
     style PHP fill:#e1f5fe,stroke:#fff
     style MySQL fill:#e1f5fe,stroke:#01579b
     style cAdvisor fill:#fff3e0,stroke:#e65100
@@ -157,5 +158,6 @@ De **Dockerfile** definieert de custom image voor de **php** service:
     - **free -m**: Om het geheugengebruik op te vragen.
 
     - **top -bn1**: Om een snapshot van actieve processen te krijgen, waaruit CPU-gebruik wordt afgeleid.
+
 
 - De tekstuele output van deze commando's wordt vervolgens door PHP-functies geparsed en omgezet in een gestructureerd JSON-antwoord.
